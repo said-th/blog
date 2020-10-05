@@ -1,0 +1,56 @@
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" [class.toggled]="collapsedMenu" id="accordionSidebar">
+
+  <!-- Sidebar - Brand -->
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" routerLink="/">
+    <div class="sidebar-brand-icon rotate-n-15">
+      <i class="fas fa-laugh-wink"></i>
+    </div>
+    <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+  </a>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider my-0">
+
+  <!-- Nav Item - Dashboard -->
+
+  <div *ngFor="let item of menuItems;let i = index">
+    <li class="nav-item" *ngIf="!item?.group && !item?.children">
+      <a class="nav-link" [routerLink]="item.link" routerLinkActive="active">
+        <i [classList]="item.icon"></i>
+        <span>{{item.title}}</span></a>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider" *ngIf="item?.group && !item?.children">
+
+    <!-- Heading -->
+    <div class="sidebar-heading" *ngIf="item?.group && !item?.children">
+      {{item.title}}
+    </div>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item" *ngIf="item?.children">
+      <a class="nav-link" [class.collapsed]="menuChild !== i" (click)="toggle(i)" aria-expanded="true"
+         data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+        <i [classList]="item.icon"></i>
+        <span>{{item.title}}</span>
+      </a>
+      <div id="collapseTwo" class="collapse" [class.show]="menuChild == i">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Custom {{item.title}}:</h6>
+          <a class="collapse-item" routerLinkActive="active" [routerLink]="sub.link" *ngFor="let sub of item.children">{{sub.title}}</a>
+        </div>
+      </div>
+    </li>
+  </div>
+
+
+  <!-- Divider -->
+  <hr class="sidebar-divider d-none d-md-block">
+
+  <!-- Sidebar Toggler (Sidebar) -->
+  <div class="text-center d-none d-md-inline">
+    <button class="rounded-circle border-0" id="sidebarToggle" (click)="toggleCollapse()"></button>
+  </div>
+
+</ul>
+<!-- End of Sidebar -->

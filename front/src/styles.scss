@@ -1,0 +1,24 @@
+@import '~highlight.js/styles/github.css';
+@import 'assets/css/base.css';
+@import 'assets/css/main.css';
+
+
+.label {
+  color: white;
+  padding: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 5px;
+  border-radius: 15px;
+  border: 0;
+  outline: none;
+}
+.tags {
+  margin: 10px 0 10px 0;
+}
+.pagination-button{
+  border: none;
+  outline: none;
+  background: none;
+}
+

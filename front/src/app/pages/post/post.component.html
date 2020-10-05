@@ -1,0 +1,88 @@
+<section class="s-content s-content--narrow s-content--no-padding-bottom" #content>
+
+  <article class="row format-standard">
+
+    <div class="s-content__header col-full">
+
+      <h1 class="s-content__header-title">
+        <app-seleton-loader width="50%" height="30px" center="true" *ngIf="loading"></app-seleton-loader>
+        <span *ngIf="!loading">{{post.title}}</span>
+
+      </h1>
+      <app-seleton-loader width="30%" height="20px" center="true" *ngIf="loading"></app-seleton-loader>
+      <ul class="s-content__header-meta" *ngIf="!loading">
+        <li class="date">Published {{post.publicationDate|timeAgo}}</li>
+        <li class="cat">{{post.timeToRead}}
+        </li>
+      </ul>
+    </div> <!-- end s-content__header -->
+
+    <div class="s-content__media col-full">
+      <div class="s-content__post-thumb">
+        <!--<img src="assets/images/thumbs/single/standard/standard-1000.jpg"
+             srcset="assets/images/thumbs/single/standard/standard-2000.jpg 2000w,
+                                 assets/images/thumbs/single/standard/standard-1000.jpg 1000w,
+                                 assets/images/thumbs/single/standard/standard-500.jpg 500w"
+             sizes="(max-width: 2000px) 100vw, 2000px" alt="">-->
+      </div>
+    </div> <!-- end s-content__media -->
+
+    <div class="col-full s-content__main">
+
+      <app-seleton-loader width="100%" height="100vh" center="true" *ngIf="loading"></app-seleton-loader>
+      <div [innerHTML]="post.html" *ngIf="!loading"></div>
+
+      <p class="s-content__tags">
+        <span *ngIf="!loading">PostData Tags</span>
+        <app-seleton-loader width="10%" height="20px" *ngIf="loading"></app-seleton-loader>
+        <span class="s-content__tag-list">
+          <app-seleton-loader width="100vh" height="20px" *ngIf="loading"></app-seleton-loader>
+          <span *ngIf="!loading"><a href="#" *ngFor="let tag of post.tags"
+                                    [routerLink]="['/blog/tag',tag.label]">{{tag.label}}</a></span>
+        </span>
+      </p> <!-- end s-content__tags -->
+
+      <div class="s-content__author">
+        <app-seleton-loader width="6.6rem" height="6.6rem" [circle]="true" class="author_image"
+                            *ngIf="loading"></app-seleton-loader>
+        <img [alt]="post.author.legalName" [lazyLoad]="post.author.image"
+             [defaultImage]="defaultImage" *ngIf="!loading">
+        <div class="s-content__author-about">
+          <h4 class="s-content__author-name">
+            <app-seleton-loader width="30%" *ngIf="loading"></app-seleton-loader>
+            <a href="#0" *ngIf="!loading">{{post.author.legalName}}</a>
+          </h4>
+          <p *ngIf="!loading">{{post.author.description}} </p>
+          <app-seleton-loader width="100%" height="50px" *ngIf="loading"></app-seleton-loader>
+          <ul class="s-content__author-social" *ngIf="!loading">
+            <li *ngFor="let social of post.author.socials">
+              <a [href]="social.url" [title]="social.name">{{social.name}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+    </div> <!-- end s-content__main -->
+
+  </article>
+
+
+  <!-- comments
+  ================================================== -->
+  <div class="comments-wrap">
+
+    <div id="comments" class="row">
+      <div class="col-full">
+
+        <div id="disqus_thread"></div>
+        <disqus [identifier]="post.slug"></disqus>
+
+
+      </div> <!-- end col-full -->
+
+    </div> <!-- end row comments -->
+  </div> <!-- end comments-wrap -->
+
+</section> <!-- s-content -->
+

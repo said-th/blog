@@ -1,0 +1,11 @@
+.contact-image{
+  text-align: center;
+  margin-bottom: 100px;
+}
+.contact-image , h3{
+  text-align: center;
+  margin-top: 10px;
+}
+.contact-image i{
+  font-size: 30px;
+}

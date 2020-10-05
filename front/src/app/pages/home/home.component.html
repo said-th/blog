@@ -1,0 +1,61 @@
+<div class="pageheader-content row" *ngIf="!loading">
+  <div class="col-full">
+
+    <div class="featured">
+
+      <div class="featured__column featured__column--big">
+        <div class="entry" [lazyLoad]="popularPosts[0].cover">
+
+          <div class="entry__content">
+                <span class="entry__category"><a *ngFor="let tag of popularPosts[0].tags"
+                                                 [routerLink]="['/blog/tag',tag.label]"
+                                                 style="margin-left: 10px;">{{tag.label}}</a></span>
+
+            <h1><a [routerLink]="['/post', popularPosts[0].slug]" title="">{{popularPosts[0].title}}</a></h1>
+
+            <div class="entry__info">
+              <a class="entry__profile-pic">
+                <img class="avatar" [lazyLoad]="popularPosts[0].author?.image"
+                     [alt]="popularPosts[0].title">
+              </a>
+
+              <ul class="entry__meta">
+                <li><a>{{popularPosts[0].author?.legalName}}</a></li>
+                <li>{{popularPosts[0].publicationDate|date}}</li>
+              </ul>
+            </div>
+          </div> <!-- end entry__content -->
+
+        </div> <!-- end entry -->
+      </div> <!-- end featured__big -->
+
+      <div class="featured__column featured__column--small">
+        <div *ngFor="let post of popularPosts |slice:1:3" class="entry"
+             [lazyLoad]="post.cover">
+
+          <div class="entry__content">
+                <span class="entry__category"><a *ngFor="let tag of post.tags" [routerLink]="['/blog/tag',tag.label]"
+                                                 style="margin-left: 10px;">{{tag.label}}</a></span>
+
+            <h1><a [routerLink]="['/post', post.slug]" title="">{{post.title}}</a></h1>
+
+            <div class="entry__info">
+              <a class="entry__profile-pic">
+                <img class="avatar" [lazyLoad]="post.author.image" [defaultImage]="" [alt]="post.title">
+              </a>
+
+              <ul class="entry__meta">
+                <li><a>{{post.author.legalName}}</a></li>
+                <li>{{post.publicationDate|date}}</li>
+              </ul>
+            </div>
+          </div> <!-- end entry__content -->
+
+        </div> <!-- end entry -->
+      </div> <!-- end featured__big -->
+
+
+    </div> <!-- end featured -->
+
+  </div> <!-- end col-full -->
+</div>

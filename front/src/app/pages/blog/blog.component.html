@@ -1,0 +1,106 @@
+<!-- s-content
+================================================== -->
+<section class="s-content">
+  <div class="row masonry-wrap">
+    <div class="masonry">
+      <div class="grid-sizer"></div>
+      <div *ngIf="loading">
+        <article class="masonry__brick entry format-standard" style="height: 700px"
+                 *ngFor="let i of counter">
+          <app-seleton-loader width="100%" height="50%"></app-seleton-loader>
+
+          <div class="entry__text">
+            <div class="entry__header">
+              <app-seleton-loader width="100%" height="20px"></app-seleton-loader>
+
+            </div>
+            <div class="entry__excerpt">
+              <p>
+                <app-seleton-loader width="100%" height="120px"></app-seleton-loader>
+              </p>
+            </div>
+
+            <div class="entry__meta">
+              <app-seleton-loader width="100%" height="40px"
+                                  style="margin-top: 10px"></app-seleton-loader>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="row text-center" *ngIf="empty">
+        <h2>No matching posts</h2>
+        <p>your search "<strong>{{searchQuery}}</strong>" did not match any results.<br />
+        please check the spelling or try again with a less specific term</p>
+      </div>
+      <div [class.is-hidden]="loading" *ngIf="!empty">
+        <article class="masonry__brick entry format-standard" style="height: 700px"
+                 *ngFor="let post of asyncPosts | async  | paginate: {id:'blog-id' ,  itemsPerPage:itemsPerPage , currentPage:currentPage , totalItems:totalItems}">
+          <div>
+            <a [routerLink]="['/post', post.slug]" class="entry__thumb-link">
+              <img [lazyLoad]="post.cover" [defaultImage]="defaultImage"
+                   [alt]="post.title">
+            </a>
+          </div>
+
+          <div class="entry__text">
+            <div class="entry__header">
+              <div class="entry__date">
+                <span>{{post.publicationDate | date}}</span> | <span>{{post.timeToRead}}</span>
+              </div>
+
+              <h1 class="entry__title">
+                <a [routerLink]="['/post', post.slug]">{{post.title}}</a></h1>
+
+            </div>
+            <div class="entry__excerpt">
+              <p>
+              <span>
+                  {{post.describtion | ellipsis:100}}
+                </span>
+              </p>
+            </div>
+
+            <div class="entry__meta">
+            <span class="entry__meta-links">
+                                <a *ngFor="let tag of post.tags" [routerLink]="['/blog/tag',tag.label]">{{tag.label}}</a>
+                            </span>
+            </div>
+          </div>
+
+        </article>
+      </div>
+    </div> <!-- end masonry -->
+  </div> <!-- end masonry-wrap -->
+
+
+  <div class="row" *ngIf="!empty">
+    <div class="col-full">
+      <nav class="pgn">
+        <pagination-template #page="paginationApi"
+                             id="blog-id"
+                             (pageChange)="changePage($event)">
+          <ul>
+            <li>
+              <button class="pgn__prev " (click)="page.previous()" *ngIf="!page.isFirstPage()">Prev</button>
+            </li>
+
+            <li *ngFor="let p of page.pages" [class.active]="page.getCurrent() === p.value">
+              <button (click)="page.setCurrent(p.value)" *ngIf="page.getCurrent() !== p.value"
+                      class="pgn__num pagination-button">{{p.label}}</button>
+              <span *ngIf="page.getCurrent() === p.value">
+                <button class="pgn__num current pagination-button">{{p.label}}</button>
+              </span>
+            </li>
+            <li>
+              <button class="pgn__next" *ngIf="!page.isLastPage()"
+                      (click)="page.next()">Next
+              </button>
+            </li>
+          </ul>
+
+
+        </pagination-template>
+      </nav>
+    </div>
+  </div>
+</section> <!-- s-content -->

@@ -1,0 +1,19 @@
+.disabled{
+  background-color: lightgray;
+}
+
+.center-block{
+  float: none;
+  margin: 0 auto;
+}
+
+
+img , .label{
+  cursor: pointer;
+  outline: none;
+}
+
+.loading{
+  background-color: #000000;
+}
+

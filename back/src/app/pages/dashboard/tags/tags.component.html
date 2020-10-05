@@ -1,0 +1,70 @@
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary"><button (click)="toggleEditOrAddModal(-1)" class="btn btn-primary btn-icon-split">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-plus-square"></i>
+                    </span>
+      <span class="text">Add Tag</span>
+    </button></h6>
+  </div>
+  <div class="card-body">
+    <div class="col-12 modal-open">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th scope="col">Label</th>
+          <th scope="col">Color</th>
+          <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr
+          *ngFor="let tag of tags;let i=index">
+          <td>{{tag.label}}</td>
+          <th scope="row">{{tag.color}}</th>
+          <td>
+            <button type="button" class="btn btn-success ml-1" (click)="toggleEditOrAddModal(i)"><i
+              class="fas fa-edit"></i></button>
+            <button type="button" class="btn btn-danger ml-1" (click)="removeTag(tag.id)"><i
+              class="far fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade show d-block" *ngIf="manage" id="exampleModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Tag</h5>
+        <button type="button" class="close" (click)="toggleEditOrAddModal(-1)" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="tagForm" (ngSubmit)="save()">
+          <input type="hidden" formControlName="id">
+          <div class="form-group">
+            <label for="label" class="col-form-label">Label:</label>
+            <input type="text" formControlName="label" class="form-control" id="label">
+          </div>
+          <div class="form-group">
+            <label for="color" class="col-form-label">Color:</label>
+            <input type="text" formControlName="color" class="form-control" id="color">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="toggleEditOrAddModal(-1)">Close</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!tagForm.valid">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-confirm-dialog></app-confirm-dialog>

@@ -1,0 +1,14 @@
+<div class="custom-file fileInputProfileWrap" [formGroup]="parentForm">
+  <button  class="btn float-right remove-image" (click)="removeImage()" *ngIf="isImageSaved"><i class="fas fa-times-circle text-danger fa-2x"></i></button>
+  <input type="file" id="cover" (change)="fileChangeEvent($event)" class="fileInputProfile form-control-file">
+  <div class="img-space">
+
+    <ng-container *ngIf="isImageSaved; else elseTemplate">
+      <img [src]="cover" width="50%"/>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <img src="assets/img/placeholder-image.png" class="img-responsive" width="100">
+    </ng-template>
+
+  </div>
+</div>

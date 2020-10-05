@@ -1,0 +1,51 @@
+<div class="s-pageheader" [class.s-pageheader--home]="isHome" [class.nav-wrap-is-visible]="navIsOpen"
+     [class.search-is-visible]="searchIsOpen">
+  <header class="header">
+    <div class="header__content row">
+
+      <div class="overrided-logo">
+        <a class="logo" routerLink="/">
+          <img alt="Homepage" [lazyLoad]="meta?.blogLogo">
+        </a>
+      </div> <!-- end header__logo -->
+      <ul class="header__social">
+        <li *ngFor="let social of meta?.socials">
+          <a [href]="social.url"><i [class]="social.image" aria-hidden="true" [title]="social.name"></i></a>
+        </li>
+      </ul> <!-- end header__social -->
+
+      <a class="header__search-trigger" (click)="openSearch()"></a>
+      <div class="header__search">
+        <form role="search" [formGroup]="searchForm" class="header__search-form" (ngSubmit)="search()">
+          <label>
+            <span class="hide-content">Search for:</span>
+            <input type="search" formControlName="query" class="search-field" placeholder="Type Keywords" title="Search for:"
+                   autocomplete="off">
+          </label>
+          <input type="submit" class="search-submit" value="Search">
+        </form>
+        <a (click)="closeSearch()" title="Close Search" class="header__overlay-close">Close</a>
+      </div>  <!-- end header__search -->
+
+
+      <a class="header__toggle-menu" (click)="openNav()" title="Menu"><span>Menu</span></a>
+
+      <nav class="header__nav-wrap">
+
+        <h2 class="header__nav-heading h6">Site Navigation</h2>
+
+        <ul class="header__nav">
+          <li routerLinkActive="current" [routerLinkActiveOptions]="{exact: true}"><a (click)="closeNav()"
+                                                                                      routerLink="/">Home</a></li>
+          <li routerLinkActive="current"><a routerLink="/blog" (click)="closeNav()">blog</a></li>
+          <li routerLinkActive="current"><a routerLink="/about" (click)="closeNav()">About</a></li>
+          <li routerLinkActive="current"><a routerLink="/contact" (click)="closeNav()">Contact</a></li>
+        </ul> <!-- end header__nav -->
+
+        <a (click)="closeNav()" title="Close Menu" class="header__overlay-close close-mobile-menu">Close</a>
+
+      </nav> <!-- end header__nav-wrap -->
+
+    </div> <!-- header-content -->
+  </header> <!-- header -->
+</div> <!-- end s-pageheader -->
