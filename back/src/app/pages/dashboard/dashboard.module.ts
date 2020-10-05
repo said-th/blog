@@ -6,10 +6,11 @@ import {DashboardRoutingModule, routingComponents} from './dashboard-routing.mod
 import {ToastrModule, ToastrService} from 'ngx-toastr';
 import {SharedModule} from '../../shared/shared.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, ...routingComponents],
+  declarations: [DashboardComponent, ...routingComponents, ProfileComponent],
   exports: [],
   imports: [
     CommonModule,

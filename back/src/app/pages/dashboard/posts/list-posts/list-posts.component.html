@@ -1,32 +1,46 @@
-<h1>Manage posts</h1>
-<div class="col-12 modal-open">
-  <table class="table table-bordered">
-    <thead>
-    <tr>
-      <th scope="col">Title</th>
-      <th scope="col">Description</th>
-      <th *ngIf="author.roles.includes('ROLE_ADMIN')" scope="col">Author</th>
-      <th scope="col">Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr
-      *ngFor="let post of asyncPosts | async  | paginate: {id:'post-id' ,  itemsPerPage:itemsPerPage , currentPage:currentPage , totalItems:totalItems};trackBy:trackPost">
-      <th scope="row">{{post.title}}</th>
-      <td>{{post.description}}</td>
-      <td *ngIf="author.roles.includes('ROLE_ADMIN')">{{post.author.legalName}}</td>
-      <td>
-        <button type="button" class="btn btn-primary" (click)="publish(post)"><i class="fas"
-                                                                                 [ngClass]="{'fa-eye-slash':post.published,'fa-eye':!post.published}"></i>
-        </button>
-        <a type="button" class="btn btn-success ml-1" [routerLink]="['/dashboard/posts/update' , post.slug]"><i
-          class="fas fa-edit"></i></a>
-        <button type="button" class="btn btn-danger ml-1" (click)="removePost(post.id)"><i class="far fa-trash-alt"></i>
-        </button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary"><a routerLink="/dashboard/posts/new" class="btn btn-primary btn-icon-split">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-plus-square"></i>
+                    </span>
+      <span class="text">Add Post</span>
+    </a></h6>
+  </div>
+  <div class="card-body">
+    <div class="col-12 modal-open">
+      <div class="col-12 modal-open">
+        <table class="table table-borderless">
+          <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th *ngIf="author.roles.includes('ROLE_ADMIN')" scope="col">Author</th>
+            <th scope="col">Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr
+            *ngFor="let post of asyncPosts | async  | paginate: {id:'post-id' ,  itemsPerPage:itemsPerPage , currentPage:currentPage , totalItems:totalItems};trackBy:trackPost">
+            <th scope="row">{{post.title}}</th>
+            <td>{{post.description}}</td>
+            <td *ngIf="author.roles.includes('ROLE_ADMIN')">{{post.author.legalName}}</td>
+            <td>
+              <button type="button" class="btn btn-primary" (click)="publish(post)"><i class="fas"
+                                                                                       [ngClass]="{'fa-eye-slash':post.published,'fa-eye':!post.published}"></i>
+              </button>
+              <a type="button" class="btn btn-success ml-1" [routerLink]="['/dashboard/posts/update' , post.slug]"><i
+                class="fas fa-edit"></i></a>
+              <button type="button" class="btn btn-danger ml-1" (click)="removePost(post.id)"><i class="far fa-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 
 <app-confirm-dialog></app-confirm-dialog>
+

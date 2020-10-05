@@ -9,13 +9,9 @@ export let MENU_ITEMS = [
     group: true,
   },
   {
-    title: 'Post',
+    title: 'Manage Posts',
     icon: 'fas fa-fw fa-list',
     children: [
-      {
-        title: 'Add Post',
-        link: '/dashboard/posts/new',
-      },
       {
         title: 'All posts',
         link: '/dashboard/posts/list',
@@ -23,13 +19,22 @@ export let MENU_ITEMS = [
     ],
   },
   {
-    title: 'Tag',
-    icon: 'fas fa-fw fa-list',
+    title: 'Manage Tags',
+    icon: 'fas fa-fw fa-tags',
     link: '/dashboard/tags',
+  },
+  {
+    title: 'SETTING',
+    group: true,
   },
   {
     title: 'Setting',
     icon: 'fas fa-fw fa-cog',
-    link: '/dashboard/setting',
+    children: [
+      {
+        title: 'Profile',
+        link: '/dashboard/profile',
+      },
+    ],
   },
 ];

@@ -21,7 +21,8 @@
                    id="tags"
                    [animationDuration]="{enter:'0ms' , leave:'0ms'}"
                    [onlyFromAutocomplete]="true">
-          <tag-input-dropdown displayBy="label" [showDropdownIfEmpty]="true" [autocompleteObservable]="tags">
+          <tag-input-dropdown [showDropdownIfEmpty]="true"
+                              [autocompleteItems]="tags" displayBy="label" identifyBy="id">
           </tag-input-dropdown>
         </tag-input>
       </div>

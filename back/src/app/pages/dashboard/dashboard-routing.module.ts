@@ -7,7 +7,7 @@ import {FooterComponent} from './@theme/footer/footer.component';
 import {SidebarComponent} from './@theme/sidebar/sidebar.component';
 import {NavbarComponent} from './@theme/navbar/navbar.component';
 import {TagsComponent} from './tags/tags.component';
-import {ConfirmDialogComponent} from '../../shared/components/confirm-dialog/confirm-dialog.component';
+import {ProfileComponent} from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -15,6 +15,7 @@ const routes: Routes = [
     path: '',
     children: [
       {path: 'home', component: HomeComponent},
+      {path: 'profile', component: ProfileComponent},
       {path: '', component: HomeComponent},
       {path: 'posts', loadChildren: () => import('./posts/posts.module').then(m => m.PostsModule)},
       {component: TagsComponent, path: 'tags'},
@@ -36,5 +37,6 @@ export const routingComponents = [
   NavbarComponent,
   TagsComponent,
   SettingsComponent,
-  HomeComponent
+  HomeComponent,
+  ProfileComponent
 ];
