@@ -1,11 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import "~bootstrap/dist/css/bootstrap.css";
+
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+
 @import "~quill/dist/quill.core";
 @import "~quill/dist/quill.snow";
-@import "~bootstrap/dist/css/bootstrap.css";
-@import "~@fortawesome/fontawesome-free/css/all.css";
-@import "~assets/css/sb-admin-2.css";
 
-
+@import '~ngx-toastr/toastr-bs4-alert';
+@import "~assets/css/sb-admin-2.min.css";
 .default {
   background-color: #f8f9fc !important;
 }
